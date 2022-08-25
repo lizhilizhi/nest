@@ -8,10 +8,15 @@ export class AuthGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean {
-    const roles = this.reflector.get<string[]>('roles',context.getHandler)
+    const roles = this.reflector.get<string[]>('roles', context.getHandler());
     console.log('-----------执行守卫-------------')
-
-    return true
-
+    console.log(roles)
+    const  req = context.switchToHttp().getRequest()
+    const user= req.query.user
+    console.log(req.query)
+    console.log(roles.indexOf(user))
+    if (roles.indexOf(user) > -1) {
+      return true;
+    }
     }
 }
