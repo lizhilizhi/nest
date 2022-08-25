@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { options } from "../../config/swg.config";
+import { options } from "../../common/config/swg.config";
 
 export class CreateUserDto {
   @ApiProperty({default:'wuwuqianqian'})

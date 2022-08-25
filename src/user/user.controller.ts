@@ -1,17 +1,17 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards} from '@nestjs/common';
+import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, SetMetadata} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from '../auth/auth.guard';
+import {Roles} from "../common/auth/roles.decorator";
 
 @ApiTags('user')
 @Controller('user')
-@UseGuards(AuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
+  @Roles('admin')
   getHello() :string{
     return  '111'
   }
